@@ -2,6 +2,19 @@
 <html>
 
 <head>
+  <style>
+    th {
+      text-align: center;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    tr {
+      text-align: center;
+    }
+  </style>
   <title><?php echo SITE_NAME . ": " . $title ?></title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -12,4 +25,24 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="<?= base_url("plugins/bootstrap/css/bootstrap.min.css"); ?>">
+  <link rel="stylesheet" href="<?= base_url("plugins/datatables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css"); ?>">
+  <script src="<?= base_url("plugins/bootstrap/js/jquery.min.js"); ?>">
+  </script>
+  <script src="<?= base_url("plugins/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+  <!-- DataTables -->
+  <script src="<?= base_url("plugins/datatables/DataTables-1.10.23/js/jquery.dataTables.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"); ?>"></script>
+
+  <!-- Buttons -->
+  <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/dataTables.buttons.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/buttons.bootstrap4.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/JSZip-2.5.0/jszip.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/pdfmake-0.1.36/pdfmake.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/pdfmake-0.1.36/vfs_fonts.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/buttons.html5.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/buttons.print.min.js"); ?>"></script>
+  <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/buttons.colVis.min.js"); ?>"></script>
+  <link rel="stylesheet" href="<?= base_url("plugins/datatables/Buttons-1.6.5/css/buttons.bootstrap4.min.css"); ?>">
 </head>

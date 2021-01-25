@@ -10,7 +10,8 @@ class DataSensor extends CI_Controller {
     $this->load->view("templates/head.php", $include);
     $this->load->view("templates/sidebar.php", $include);
     $this->load->view("templates/navbar.php", $include);
-    $this->load->view('datasensor');
+    $this->load->view('datasensor', $include);
     $this->load->view("templates/footer.php");
+    $this->load->view("templates/script.php");
   }
 }

@@ -22,8 +22,15 @@
           <!-- DataSensor -->
           <li class="nav-item <?php if (isset($datasensor)) echo 'active'; ?>">
             <a class="nav-link" href="<?= base_url('datasensor'); ?>">
-              <i class="material-icons">datas</i>
+              <i class="material-icons">receipt</i>
               <p>Data Sensor</p>
+            </a>
+          </li>
+          <!-- Masukkan Sensor -->
+          <li class="nav-item <?php if (isset($inputsensor)) echo 'active'; ?>">
+            <a class="nav-link" href="<?= base_url('inputsensor'); ?>">
+              <i class="material-icons">input</i>
+              <p>Input Sensor</p>
             </a>
           </li>
         </ul>

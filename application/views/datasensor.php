@@ -1,36 +1,45 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-lg-12 col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Simple Table</h4>
-            <p class="card-category"> Here is a subtitle for this table</p>
+            <h4 class="card-title ">Database Sensor</h4>
+            <p class="card-category">Data terkait bacaan sensor yang disimpan secara lengkap</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table">
+              <table id="DataSensor" class="table table-hover">
                 <thead class=" text-primary">
                   <th>
-                    ID
+                    No
                   </th>
                   <th>
-                    Name
+                    Waktu
                   </th>
                   <th>
-                    Country
+                    Waktu
                   </th>
                   <th>
-                    City
+                    Kecepatan Angin
                   </th>
                   <th>
-                    Salary
+                    Status Hujan
+                  </th>
+                  <th>
+                    Suhu dan Kelembaban Kamar
                   </th>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
                       1
+                    </td>
+                    <td>
+                      14:32
+                    </td>
+                    <td>
+                      12 Januari 2021
                     </td>
                     <td>
                       Dakota Rice
@@ -40,94 +49,6 @@
                     </td>
                     <td>
                       Oud-Turnhout
-                    </td>
-                    <td class="text-primary">
-                      $36,738
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-primary">
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-primary">
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
                     </td>
                   </tr>
                 </tbody>
@@ -139,3 +60,15 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    var table = $('#DataSensor').DataTable({
+      lengthChange: true,
+      buttons: ['copy', 'csv', 'excel', 'pdf']
+    });
+
+    table.buttons().container()
+      .appendTo('#DataSensor_wrapper .col-md-6:eq(0)');
+  });
+</script>
