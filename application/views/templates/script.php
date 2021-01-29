@@ -39,7 +39,7 @@
 <script src="<?= base_url("assets/js/plugins/bootstrap-notify.js"); ?>"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url("assets/js/material-dashboard.js?v=2.1.2"); ?>" type="text/javascript"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
   $(document).ready(function() {
     $().ready(function() {

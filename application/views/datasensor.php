@@ -27,30 +27,36 @@
                     Status Hujan
                   </th>
                   <th>
-                    Suhu dan Kelembaban Kamar
+                    Suhu Kamar
+                  </th>
+                  <th>
+                    Kelembaban Kamar
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      14:32
-                    </td>
-                    <td>
-                      12 Januari 2021
-                    </td>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                  </tr>
+                  <?php
+                  if ($datasensor) {
+                    foreach ($datasensor as $data) {
+                      echo '
+                            <tr>
+                              <td class="text-center align-middle">' . $data['id'] . '</td>
+                              <td class="text-center align-middle">' . $data['waktu'] . '</td>
+                              <td class="text-center align-middle">' . date("d/m/Y", strtotime($data['tanggal'])) . '</td>
+                              <td class="text-center align-middle">' . $data['kecepatanangin'] . '</td>';
+                      if ($data['statushujan'] == 0) {
+                        echo '<td class="text-center align-middle">Tidak Hujan</td>';
+                      } else if ($data['statushujan'] == 1) {
+                        echo '<td class="text-center align-middle">Hujan</td>';
+                      }
+                      echo '
+                              <td class="text-center align-middle">' . $data['suhu'] . '</td>
+                              <td class="text-center align-middle">' . $data['kelembaban'] . '</td>
+                              </td>
+                            </tr>
+                          ';
+                    }
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>

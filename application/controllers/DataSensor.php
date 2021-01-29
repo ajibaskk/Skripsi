@@ -7,6 +7,9 @@ class DataSensor extends CI_Controller {
     $include['title'] = 'Data Sensor';
     $include['datasensor'] = 'active';
 
+    $this->load->model("m_datasensor");
+    $include["datasensor"] = $this->m_datasensor->ambilDataSensorTabel2()->result_array();
+
     $this->load->view("templates/head.php", $include);
     $this->load->view("templates/sidebar.php", $include);
     $this->load->view("templates/navbar.php", $include);

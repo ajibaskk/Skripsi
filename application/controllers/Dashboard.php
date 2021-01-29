@@ -14,4 +14,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view("templates/footer.php");
 		$this->load->view("templates/script.php");
 	}
+
+	public function ambilDataSensor() {
+		$this->load->model("m_datasensor");
+		$data = $this->m_datasensor->ambilDataSensor()->result();
+
+		if (count($data) == 0) {
+			$data = false;
+		}
+		echo json_encode($data);
+	}
+
+	public function ambilDataSensorTabel() {
+		$this->load->model("m_datasensor");
+		$data = $this->m_datasensor->ambilDataSensorTabel()->result();
+
+		if (count($data) == 0) {
+			$data = false;
+		}
+		echo json_encode($data);
+	}
 }
