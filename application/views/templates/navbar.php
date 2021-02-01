@@ -10,15 +10,6 @@
         <span class="navbar-toggler-icon icon-bar"></span>
         <span class="navbar-toggler-icon icon-bar"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:;">
-              <i class="material-icons">notifications</i> Notifications
-            </a>
-          </li>
-          <!-- your navbar here -->
-        </ul>
-      </div>
+
     </div>
   </nav>

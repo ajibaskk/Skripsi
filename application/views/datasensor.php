@@ -36,7 +36,7 @@
                     Waktu
                   </th>
                   <th>
-                    Waktu
+                    Tanggal
                   </th>
                   <th>
                     Kecepatan Angin
@@ -54,10 +54,11 @@
                 <tbody>
                   <?php
                   if ($datasensor) {
+                    $i = 1;
                     foreach ($datasensor as $data) {
                       echo '
                             <tr>
-                              <td class="text-center align-middle">' . $data['id'] . '</td>
+                              <td class="text-center align-middle">' . $i . '</td>
                               <td class="text-center align-middle">' . $data['waktu'] . '</td>
                               <td class="text-center align-middle">' . date("d/m/Y", strtotime($data['tanggal'])) . '</td>
                               <td class="text-center align-middle">' . $data['kecepatanangin'] . '</td>';
@@ -72,6 +73,7 @@
                               </td>
                             </tr>
                           ';
+                      $i++;
                     }
                   }
                   ?>

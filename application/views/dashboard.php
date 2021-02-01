@@ -73,7 +73,7 @@
 					<div class="card-body table-responsive">
 						<table class="table table-hover">
 							<thead class="text-warning">
-								<th>No</th>
+
 								<th>Waktu</th>
 								<th>Tanggal</th>
 								<th>Kecepatan Angin</th>
@@ -83,7 +83,7 @@
 							</thead>
 							<tbody id="datasensor">
 								<tr>
-									<td></td>
+
 									<td></td>
 									<td></td>
 									<td></td>
@@ -194,8 +194,7 @@
 							}
 
 
-							datasensor.innerHTML += "<tr><td>" + val.id +
-								"</td><td>" + val.waktu +
+							datasensor.innerHTML += "<tr><td>" + val.waktu +
 								"</td><td>" + val.tanggal +
 								"</td><td>" + val.kecepatanangin +
 								"</td><td>" + status_hujan +
