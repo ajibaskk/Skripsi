@@ -25,6 +25,15 @@ class Dashboard extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function ambilOperasi() {
+		$this->load->model("m_operasi");
+		$data_operasi = $this->m_operasi->ambilOperasi()->row_array();
+		$operasi = $data_operasi['status'];
+		$data = array();
+		array_push($data, $operasi);
+		echo json_encode($data);
+	}
+
 	public function ambilDataSensorTabel() {
 		$this->load->model("m_datasensor");
 		$data = $this->m_datasensor->ambilDataSensorTabel()->result();
@@ -32,6 +41,13 @@ class Dashboard extends CI_Controller {
 		if (count($data) == 0) {
 			$data = false;
 		}
+		echo json_encode($data);
+	}
+
+	public function ambilDataJendela() {
+		$this->load->model("m_statusjendela");
+		$data = $this->m_statusjendela->ambilDataSensorTabel()->result();
+
 		echo json_encode($data);
 	}
 }

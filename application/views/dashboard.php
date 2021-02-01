@@ -9,11 +9,14 @@
 						</div>
 						<p class="card-category">Posisi Jendela</p>
 						<h3 class="card-title" id=posisijendela></h3>
+						<button type="button" id="buka_jendela" style="display:none">Buka</button>
+						<button type="button" id="tutup_jendela" style="display:none">Tutup</button>
 					</div>
 					<div class="card-footer">
 						<div class="stats">
 							<i class="material-icons text-danger">warning</i>
-							<a href="javascript:;">Operasi Manual</a>
+							<a onclick="operasi()">Ganti Operasi</a>
+							<input type="hidden" id="status_sekarang">
 						</div>
 					</div>
 				</div>
@@ -98,6 +101,8 @@
 
 <script>
 	var posisijendela = document.getElementById('posisijendela');
+	var buka_jendela = document.getElementById('buka_jendela');
+	var tutup_jendela = document.getElementById('tutup_jendela');
 	var kecepatanangin = document.getElementById('kecepatanangin');
 	var statushujan = document.getElementById('statushujan');
 	var suhukelembaban = document.getElementById('suhukelembaban');
@@ -118,8 +123,12 @@
 
 							if (val.posisijendela == 0) {
 								var posisi_jendela = "Tertutup";
+								buka_jendela.style.display = "block";
+								tutup_jendela.style.display = "none";
 							} else if (val.posisijendela == 1) {
 								var posisi_jendela = "Terbuka";
+								buka_jendela.style.display = "none";
+								tutup_jendela.style.display = "block";
 							}
 							posisijendela.innerHTML = posisi_jendela;
 							kecepatanangin.innerHTML = val.kecepatanangin;
@@ -135,12 +144,37 @@
 					}
 				}
 			});
+			$.ajax({
+				url: "<?php echo base_url(); ?>Dashboard/ambilDataJendela",
+				dataType: 'json',
+				success: function(data) {
+
+					if (data != false) {
+						$.each(data, function(key, val) {
+							if (val.posisijendela == 0) {
+								var posisi_jendela = "Tertutup";
+								buka_jendela.style.display = "block";
+								tutup_jendela.style.display = "none";
+							} else if (val.posisijendela == 1) {
+								var posisi_jendela = "Terbuka";
+								buka_jendela.style.display = "none";
+								tutup_jendela.style.display = "block";
+							}
+							posisijendela.innerHTML = posisi_jendela;
+
+						});
+					} else {
+						posisijendela.innerHTML = "Data TIdak Ditemukan";
+					}
+				}
+			});
 		}, 1000);
 	});
 </script>
 
 <script>
 	var datasensor = document.getElementById('datasensor');
+	var status_sekarang = document.getElementById('status_sekarang');
 	$(document).ready(function() {
 		setInterval(function() {
 			$.ajax({
@@ -171,6 +205,28 @@
 					}
 				}
 			});
+
+			$.ajax({
+				url: "<?php echo base_url(); ?>Dashboard/ambilOperasi",
+				dataType: 'json',
+				success: function(data) {
+					status_sekarang.value = data[0];
+				}
+			});
 		}, 1000);
 	});
+</script>
+
+<script>
+	var status = document.getElementById('status_sekarang').value;
+
+	function operasi() {
+		$.ajax({
+			url: "<?php echo base_url(); ?>Dashboard/ambilOperasi",
+			dataType: 'json',
+			success: function(data) {
+				status_sekarang.value = data[0];
+			}
+		});
+	}
 </script>
