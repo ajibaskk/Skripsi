@@ -26,7 +26,7 @@
   <!-- Material Kit CSS -->
   <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <!-- Bootstrap 5 -->
-  <link rel="stylesheet" href="<?= base_url("plugins/bootstrap/css/bootstrap.min.css"); ?>">
+  <link rel="stylesheet" href="<?= base_url("plugins/bootstrap/css/bootstrap.css"); ?>">
   <link rel="stylesheet" href="<?= base_url("plugins/datatables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css"); ?>">
   <script src="<?= base_url("plugins/bootstrap/js/jquery.min.js"); ?>">
   </script>

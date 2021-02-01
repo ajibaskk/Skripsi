@@ -17,6 +17,7 @@
 							<i class="material-icons text-danger">warning</i>
 							<a onclick="operasi()">Ganti Operasi</a>
 							<input type="hidden" id="status_sekarang">
+
 						</div>
 					</div>
 				</div>
