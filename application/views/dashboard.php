@@ -72,25 +72,26 @@
 					</div>
 					<div class="card-body" style="display:none;" id="card_body_1">
 						<div class="row" id="card_body_2">
-							<?php if($jendela):
+							<?php if ($jendela) :
 								$i = 1;
-								foreach ($jendela as $row): ?>
-								<div class="col-lg-3 col-md-6 col-sm-6">
-									<div class="card card-stats">
-										<div class="card-header card-header-info card-header-icon">
-											<div class="card-icon">
-												<i class="material-icons">content_copy</i>
+								foreach ($jendela as $row) : ?>
+									<div class="col-lg-3 col-md-6 col-sm-6">
+										<div class="card card-stats">
+											<div class="card-header card-header-info card-header-icon">
+												<div class="card-icon">
+													<i class="material-icons">content_copy</i>
+												</div>
+												<p class="card-category">Jendela <?= $row['id'] ?></p>
+												<h3 class="card-title" id="status_jendela_<?= $row['id'] ?>"></h3>
 											</div>
-											<p class="card-category">Jendela <?= $row['id']?></p>
-											<h4 class="card-title" id="status_jendela_<?= $row['id']?>"></h4>
-											<div class="d-flex justify-content-end">
-												<button type="button" class="btn btn-md btn-success"  id="buka_jendela_<?= $row['id']?>" style="display:block" onclick="bukaJendela('<?= $row['id']?>')">Buka</button>
-												<button type="button" class="btn btn-md btn-danger" id="tutup_jendela_<?= $row['id']?>" style="display:none" onclick="tutupJendela('<?= $row['id']?>')">Tutup</button>
+											<div class="card-footer d-flex justify-content-end">
+												<button type="button" class="btn btn-md btn-success" id="buka_jendela_<?= $row['id'] ?>" style="display:block" onclick="bukaJendela('<?= $row['id'] ?>')">Buka</button>
+												<button type="button" class="btn btn-md btn-danger" id="tutup_jendela_<?= $row['id'] ?>" style="display:none" onclick="tutupJendela('<?= $row['id'] ?>')">Tutup</button>
 											</div>
 										</div>
 									</div>
-								</div>
-							<?php endforeach; endif;?>
+							<?php endforeach;
+							endif; ?>
 						</div>
 					</div>
 				</div>
@@ -172,18 +173,18 @@
 				dataType: 'json',
 				success: function(data) {
 					if (data != "Manual") { // Otomatis
-						if(data != "Tidak Ditemukan"){
+						if (data != "Tidak Ditemukan") {
 							if (data == 0) {
 								var posisi_jendela = "Tertutup";
 							} else if (data == 1) {
 								var posisi_jendela = "Terbuka";
 							}
 							posisijendela.innerHTML = posisi_jendela;
-						}else{
+						} else {
 							posisijendela.innerHTML = "Data Tidak Ditemukan";
 						}
-						
-					} else {// Manual
+
+					} else { // Manual
 						posisijendela.innerHTML = "Operasi Manual";
 					}
 				}
@@ -196,21 +197,21 @@
 					if (data != false) {
 						$.each(data, function(key, val) {
 							var status = val.status;
-							var status_jendela_id = "status_jendela_"+val.id;
-							var buka_jendela_id = "buka_jendela_"+val.id;
-							var tutup_jendela_id = "tutup_jendela_"+val.id;
+							var status_jendela_id = "status_jendela_" + val.id;
+							var buka_jendela_id = "buka_jendela_" + val.id;
+							var tutup_jendela_id = "tutup_jendela_" + val.id;
 							if (status == 1) {
 								document.getElementById(status_jendela_id).innerHTML = "Terbuka";
 								document.getElementById(buka_jendela_id).style.display = "none";
 								document.getElementById(tutup_jendela_id).style.display = "block";
-							} else{
+							} else {
 								document.getElementById(status_jendela_id).innerHTML = "Tertutup";
 								document.getElementById(buka_jendela_id).style.display = "block";
 								document.getElementById(tutup_jendela_id).style.display = "none";
 							}
 
 						});
-					} 
+					}
 				}
 			});
 
@@ -257,12 +258,12 @@
 				url: "<?php echo base_url(); ?>Dashboard/ambilOperasi",
 				dataType: 'json',
 				success: function(data) {
-					if(data[0] == 1){
+					if (data[0] == 1) {
 						status_operasi_header.innerHTML = "Operasi Otomatis";
 						card_body_1.style.display = "none";
 						document.getElementById("card_header_1").classList.remove('card-header-info');
 						document.getElementById("card_header_1").classList.add('card-header-success');
-					}else{
+					} else {
 						status_operasi_header.innerHTML = "Operasi Manual";
 						card_body_1.style.display = "block";
 						document.getElementById("card_header_1").classList.remove('card-header-success');
@@ -279,7 +280,7 @@
 	function operasi() {
 		$.ajax({
 			url: "<?php echo base_url(); ?>Dashboard/ubahOperasi",
-			method : "POST",
+			method: "POST",
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);
@@ -292,8 +293,10 @@
 	function bukaJendela(id) {
 		$.ajax({
 			url: "<?php echo base_url(); ?>Dashboard/bukaJendela",
-			method : "POST",
-			data: {id_jendela : id},
+			method: "POST",
+			data: {
+				id_jendela: id
+			},
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);
@@ -304,8 +307,10 @@
 	function tutupJendela(id) {
 		$.ajax({
 			url: "<?php echo base_url(); ?>Dashboard/tutupJendela",
-			method : "POST",
-			data: {id_jendela : id},
+			method: "POST",
+			data: {
+				id_jendela: id
+			},
 			dataType: 'json',
 			success: function(data) {
 				console.log(data);

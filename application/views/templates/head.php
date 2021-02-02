@@ -24,7 +24,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
-  <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link rel="stylesheet" href="<?= base_url("assets/css/material-dashboard.css?v=2.1.2"); ?>" />
   <!-- Bootstrap 5 -->
   <link rel="stylesheet" href="<?= base_url("plugins/bootstrap/css/bootstrap.css"); ?>">
   <link rel="stylesheet" href="<?= base_url("plugins/datatables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css"); ?>">

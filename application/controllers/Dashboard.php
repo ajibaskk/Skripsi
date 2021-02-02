@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model("m_operasi");
 		$data_operasi = $this->m_operasi->ambilOperasi()->row_array();
 		$operasi = $data_operasi['status'];
-		$this->m_operasi->ubahOperasi($operasi);
+		$data = $this->m_operasi->ubahOperasi($operasi);
 		echo json_encode($data);
 	}
 
@@ -58,25 +58,24 @@ class Dashboard extends CI_Controller {
 		$this->load->model("m_operasi");
 		$data_operasi = $this->m_operasi->ambilOperasi()->row_array();
 		$operasi = $data_operasi['status'];
-		if($operasi == 1){ // otomatis
+		if ($operasi  == 1) { // otomatis
 			$data = $this->m_statusjendela->ambilJendela1()->row_array();
-			if(count($data) != 0){
+			if (count($data)  != 0) {
 				$data = $data['status'];
-			}else{
+			} else {
 				$data = "Tidak Ditemukan";
 			}
-		}else{ // manual
+		} else { // manual
 			$data = "Manual";
 		}
-		
-		
+
 		echo json_encode($data);
 	}
 
 	public function ambilStatusJendela() {
 		$this->load->model("m_statusjendela");
 		$data = $this->m_statusjendela->ambilJendela()->result();
-		if(count($data) == 0){
+		if (count($data)  == 0) {
 			$data = false;
 		}
 		echo json_encode($data);

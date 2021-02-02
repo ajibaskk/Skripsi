@@ -118,8 +118,11 @@
           end_date: end_date
         },
         success: function(data) {
+          console.log(start_date);
+          console.log(end_date);
           console.log(data);
-          $('#DataSensor').html(data);
+          $('#DataSensor tbody').html(data);
+          $('#DataSensor').show();
         }
       }
     });
