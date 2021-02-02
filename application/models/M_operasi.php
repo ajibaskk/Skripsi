@@ -3,4 +3,13 @@ class M_operasi extends CI_Model {
   function ambilOperasi() {
     return $this->db->query("SELECT * FROM operasi");
   }
+
+  function ubahOperasi($status) {
+    if($status == 1){
+      $this->db->query("UPDATE operasi SET status = 0");
+    }else{
+      $this->db->query("UPDATE operasi SET status = 1");
+    }
+    
+  }
 }
