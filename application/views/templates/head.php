@@ -34,8 +34,9 @@
   <!-- DataTables -->
   <script src="<?= base_url("plugins/datatables/DataTables-1.10.23/js/jquery.dataTables.min.js"); ?>"></script>
   <script src="<?= base_url("plugins/datatables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"); ?>"></script>
-
-  <!-- Buttons -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js"></script>
+  <!-- Buttons 
+    -->
   <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/dataTables.buttons.min.js"); ?>"></script>
   <script src="<?= base_url("plugins/datatables/Buttons-1.6.5/js/buttons.bootstrap4.min.js"); ?>"></script>
   <script src="<?= base_url("plugins/datatables/JSZip-2.5.0/jszip.min.js"); ?>"></script>

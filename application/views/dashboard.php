@@ -66,7 +66,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header card-header-info" id="card_header_1">
+					<div class="card-header card-header-success" id="card_header_1">
 						<h4 class="card-title" id="status_operasi_header">Operasi</h4>
 						<p class="card-category"></p>
 					</div>
@@ -85,7 +85,7 @@
 												<h3 class="card-title" id="status_jendela_<?= $row['id'] ?>"></h3>
 											</div>
 											<div class="card-footer d-flex justify-content-end">
-												<button type="button" class="btn btn-md btn-success" id="buka_jendela_<?= $row['id'] ?>" style="display:block" onclick="bukaJendela('<?= $row['id'] ?>')">Buka</button>
+												<button type="button" class="btn btn-md btn-success" id="buka_jendela_<?= $row['id'] ?>" style="display:none" onclick="bukaJendela('<?= $row['id'] ?>')">Buka</button>
 												<button type="button" class="btn btn-md btn-danger" id="tutup_jendela_<?= $row['id'] ?>" style="display:none" onclick="tutupJendela('<?= $row['id'] ?>')">Tutup</button>
 											</div>
 										</div>

@@ -9,7 +9,7 @@ class M_datasensor extends CI_Model {
   }
 
   function ambilDataSensorTabel2() {
-    return $this->db->query("SELECT * FROM data_sensor ORDER BY id");
+    return $this->db->query("SELECT * FROM data_sensor ORDER BY id")->result_array();
   }
 
   function filterTanggal($start_date, $end_date) {

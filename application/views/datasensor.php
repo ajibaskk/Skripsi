@@ -4,19 +4,25 @@
       <div class="col-lg-12 col-md-12">
 
         <form class="row g-3 input-daterange">
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <label for="start_date" class="form-label">Tanggal Awal</label>
-            <input type="date" id="start_date" name="start_date" class="form-control" data-inputmask-alias="datetime" placeholder="dd/mm/yyyy" value="<?= set_value('start_date'); ?>">
+            <input type="date" id="start_date" name="start_date" class="form-control" data-inputmask-alias="datetime" value="<?= set_value('start_date'); ?>">
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-6">
             <label for="end_date" class="form-label">Tanggal Akhir</label>
-            <input type="date" id="end_date" name="end_date" class="form-control" data-inputmask-alias="datetime" placeholder="dd/mm/yyyy" value="<?= set_value('end_date'); ?>">
+            <input type="date" id="end_date" name="end_date" class="form-control" data-inputmask-alias="datetime" value="<?= set_value('end_date'); ?>">
           </div>
         </form>
         <div class="row g-3">
-          <div class="col-md-2">
-            <label for="date_button" class="form-label">Filter Berdasarkan Tanggal</label>
-            <button type="submit" class="btn btn-info form-control" id="filter" name="filter">Cari</button>
+          <div class="col-lg-2">
+            <label for="filter" class="form-label">Filter Berdasarkan Tanggal</label>
+            <button type="submit" class="btn btn-info form-control" id="filter" name="filter">Filter</button>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-2">
+            <label for="reset" class="form-label">Reset</label>
+            <button type="submit" class="btn btn-danger form-control" id="reset" name="reset">Reset</button>
           </div>
         </div>
 
@@ -27,7 +33,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table id="DataSensor" class="table table-hover">
+              <table id="DataSensor" class="table table-hover display nowrap">
                 <thead class=" text-primary">
                   <th>
                     No
@@ -51,33 +57,6 @@
                     Kelembaban Kamar
                   </th>
                 </thead>
-                <tbody>
-                  <?php
-                  if ($datasensor) {
-                    $i = 1;
-                    foreach ($datasensor as $data) {
-                      echo '
-                            <tr>
-                              <td class="text-center align-middle">' . $i . '</td>
-                              <td class="text-center align-middle">' . $data['waktu'] . '</td>
-                              <td class="text-center align-middle">' . date("d/m/Y", strtotime($data['tanggal'])) . '</td>
-                              <td class="text-center align-middle">' . $data['kecepatanangin'] . '</td>';
-                      if ($data['statushujan'] == 0) {
-                        echo '<td class="text-center align-middle">Tidak Hujan</td>';
-                      } else if ($data['statushujan'] == 1) {
-                        echo '<td class="text-center align-middle">Hujan</td>';
-                      }
-                      echo '
-                              <td class="text-center align-middle">' . $data['suhu'] . '</td>
-                              <td class="text-center align-middle">' . $data['kelembaban'] . '</td>
-                              </td>
-                            </tr>
-                          ';
-                      $i++;
-                    }
-                  }
-                  ?>
-                </tbody>
               </table>
             </div>
           </div>
@@ -89,14 +68,6 @@
 
 <script>
   $(document).ready(function() {
-    var table = $('#DataSensor').DataTable({
-      lengthChange: true,
-      buttons: ['copy', 'csv', 'excel', 'pdf']
-    });
-
-    table.buttons().container()
-      .appendTo('#DataSensor_wrapper .col-md-6:eq(0)');
-
     $("#start_date").on("change", function() {
       $("#end_date").attr("min", $(this).val());
     });
@@ -105,30 +76,82 @@
     });
   });
 
-  function fetch_data(start_date = '', end_date = '') {
-    var dataTable = $('#DataSensor').DataTable({
-      "processing": true,
-      "serverSide": true,
-      "order": [],
-      "ajax": {
-        url: "<?php echo base_url(); ?>DataSensor/filter_tanggal",
-        type: "POST",
-        data: {
-          start_date: start_date,
-          end_date: end_date
-        },
-        success: function(data) {
-          console.log(start_date);
-          console.log(end_date);
-          console.log(data);
-          $('#DataSensor tbody').html(data);
-          $('#DataSensor').show();
-        }
+
+  function fetch_data(start_date, end_date) {
+    $.ajax({
+      url: "<?php echo base_url(); ?>DataSensor/filter_tanggal",
+      type: "POST",
+      data: {
+        start_date: start_date,
+        end_date: end_date
+      },
+      dataType: "json",
+      success: function(data) {
+        console.log(start_date);
+        console.log(data);
+        // Datatables
+        var i = "1";
+        var table = $('#DataSensor').DataTable({
+          "lengthChange": true,
+          "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          "buttons": ['copy', 'csv', 'excel', 'pdf'],
+          "data": data,
+          // responsive
+          //"responsive": true,
+          "columns": [{
+              "data": "id",
+              "render": function(data, type, row, meta) {
+                return i++;
+              }
+            },
+            {
+              "data": "waktu"
+            },
+            {
+              "data": "tanggal",
+              "render": function(data, type, row, meta) {
+                return moment(`${row.tanggal}%`).format('DD-MM-YYYY');
+              }
+            },
+            {
+              "data": "kecepatanangin",
+              "render": function(data, type, row, meta) {
+                return `${row.kecepatanangin}m/s`;
+              }
+            },
+            {
+              "data": "statushujan",
+              "render": function(data, type, row, meta) {
+                if (`${row.statushujan}` == "0") {
+                  return 'Tidak Hujan';
+                } else {
+                  return 'Hujan';
+                }
+              }
+            },
+            {
+              "data": "suhu",
+              "render": function(data, type, row, meta) {
+                return `${row.suhu}*C`;
+              }
+            },
+            {
+              "data": "kelembaban",
+              "render": function(data, type, row, meta) {
+                return `${row.kelembaban}%`;
+              }
+            }
+          ]
+        });
       }
     });
   }
+  fetch_data();
 
-  $('#filter').click(function() {
+
+  $('#filter').click(function(e) {
 
     var start_date = $('#start_date').val();
     var end_date = $('#end_date').val();
@@ -140,5 +163,14 @@
       alert('Isi Kedua Tanggal!');
     }
 
+  });
+
+  $('#reset').click(function(e) {
+    e.preventDefault();
+    $("#start_date").val(''); // empty value
+    $("#end_date").val('');
+
+    $('#DataSensor').DataTable().destroy();
+    fetch_data();
   });
 </script>

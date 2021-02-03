@@ -16,5 +16,4 @@ class M_statusjendela extends CI_Model {
   function tutupJendela($id) {
     $this->db->query("UPDATE status_jendela SET status = 0 WHERE id = $id");
   }
-
 }
