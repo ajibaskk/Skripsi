@@ -112,7 +112,7 @@
             {
               "data": "tanggal",
               "render": function(data, type, row, meta) {
-                return moment(`${row.tanggal}%`).format('DD-MM-YYYY');
+                return moment(`${row.tanggal}`).format('DD-MM-YYYY');
               }
             },
             {
