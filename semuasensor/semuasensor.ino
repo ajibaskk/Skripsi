@@ -3,11 +3,9 @@
 #include <ArduinoJson.h>
 
 //setting jaringan
-//const char* ssid = "Tjahja Witono";
-const char* ssid = "Bayar Cuyy!!!!";
-//const char* password = "19111955";
-const char* password = "tanyayangpunya";
-const char* host = "192.168.1.8"; //alamat IP Server
+const char* ssid = "Tjahja Witono";
+const char* password = "19111955";
+const char* host = "192.168.1.3"; //alamat IP Server
 StaticJsonDocument<100> doc;
 StaticJsonDocument<1000> doc1;
 
@@ -21,10 +19,10 @@ const int rainsense= A0;
 DHT dht(DHTPIN, DHTTYPE);
 
 //modul l298n dan motor dc
-int in1= 12;   //inisial pin input1/in1 masuk pin 13
-int in2= 14;   //inisial pin input2/in2 masuk pin 12
-int in3= 5;   //inisial pin input3/in3 masuk pin 11
-int in4= 4;   //inisial pin input4/in4 masuk pin 10
+int in1= 12;   //inisial pin input1/in1 masuk pin 12
+int in2= 14;   //inisial pin input2/in2 masuk pin 14
+int in3= 5;   //inisial pin input3/in3 masuk pin 5
+int in4= 4;   //inisial pin input4/in4 masuk pin 4
 
 int motorASpeed = 0; //motor 1
 int motorBSpeed = 0; // motor 2
@@ -45,6 +43,12 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
 
+  pinMode(in1,OUTPUT);    //pin in1 sebagai OUTPUT
+  pinMode(EnA,OUTPUT);
+  pinMode(EnB,OUTPUT);
+  pinMode(in2,OUTPUT);    //pin in2 sebagai OUTPUT
+  pinMode(in3,OUTPUT);    //pin in3 sebagai OUTPUT
+  pinMode(in4,OUTPUT);    //pin in4 sebagai OUTPUT
   pinMode(rainsense, INPUT);
   dht.begin();
 
@@ -66,6 +70,11 @@ void setup() {
 }
 
 void loop() {
+  motorASpeed = 255;
+  motorBSpeed = 255;
+  analogWrite(EnA, motorASpeed);
+  analogWrite(EnB, motorBSpeed);
+  
   String data ="";
   bool parse_json = false;
   angin();
@@ -130,26 +139,38 @@ void loop() {
       if (jendela1 == "1" && posisijendela1 != "1"){
         digitalWrite(in1,HIGH);
         digitalWrite(in2,LOW);
+        delay(2000);
+        digitalWrite(in1,LOW);
+        digitalWrite(in2,LOW);
         posisijendela1 = "1"; 
         Serial.println("Jendela 1 Terbuka");
       }else if (jendela1 == "0"  && posisijendela1 != "0")  {
         digitalWrite(in1,LOW);
         digitalWrite(in2,HIGH);
+        delay(2000);
+        digitalWrite(in1,LOW);
+        digitalWrite(in2,LOW);
         posisijendela1= "0";
         Serial.println("Jendela 1 Tertutup");
       }
       if (jendela2 == "1" && posisijendela2 != "1"){
-        digitalWrite(in1,HIGH);
-        digitalWrite(in2,LOW); 
-        posisijendela2 = "1"; 
+        digitalWrite(in3,HIGH);
+        digitalWrite(in4,LOW);
+        delay(2000);
+        digitalWrite(in3,LOW);
+        digitalWrite(in4,LOW);
+        posisijendela2 = "1";
         Serial.println("Jendela 2 Terbuka");
       }else if (jendela2 == "0" && posisijendela2 != "0")  {
-        digitalWrite(in1,LOW);
-        digitalWrite(in2,HIGH);
+        digitalWrite(in3,LOW);
+        digitalWrite(in4,HIGH);
+        delay(2000);
+        digitalWrite(in3,LOW);
+        digitalWrite(in4,LOW);
         posisijendela2 = "0";
         Serial.println("Jendela 2 Tertutup");
       }
-      delay(2000);
+      
     delay(10000);
   }
 }

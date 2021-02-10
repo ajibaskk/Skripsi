@@ -48,20 +48,40 @@ class Mikrokontroler extends CI_Controller {
       $status_jendela = $status_jendela['status'];
 
       if ($status_jendela == 0) { //jendela masih tertutup
-        if (($suhu >= $T_suhu || $kelembaban >= $T_kelembaban) && $stat_hujan == 0 && $kec_angin <= 8 && $jam_sekarang >= $T_jam_buka) {
-          $this->m_statusjendela->bukaJendelaAll();
+        //$this->m_statusjendela->tutupJendelaAll();
+        if ($suhu >= $T_suhu || $kelembaban >= $T_kelembaban) {
+          if ($stat_hujan == 0 && $kec_angin <= 8) {
+            if ($jam_sekarang > $T_jam_buka && $jam_sekarang < $T_jam) {
+              $this->m_statusjendela->bukaJendelaAll();
+            } else if ($jam_sekarang > $T_jam && $jam_sekarang < $T_jam_buka) {
+              $this->m_statusjendela->tutupJendelaAll();
+            }
+          } else if ($stat_hujan == 1 || $kec_angin >= 8) {
+            $this->m_statusjendela->tutupJendelaAll();
+          }
+        } else {
+          $this->m_statusjendela->tutupJendelaAll();
         }
       } else { // jendela terbuka
+        //$this->m_statusjendela->bukaJendelaAll();
         if ($stat_hujan == 1) {
           $this->m_statusjendela->tutupJendelaAll();
         } else if ($stat_hujan == 0 && $kec_angin >= 8) { //moderate breeze
           $this->m_statusjendela->tutupJendelaAll();
-        } else if ($jam_sekarang > $T_jam) {
+        } else if ($jam_sekarang > $T_jam && $jam_sekarang < $T_jam_buka) {
+          $this->m_statusjendela->tutupJendelaAll();
+        } else if ($suhu >= $T_suhu || $kelembaban >= $T_kelembaban) {
+          if ($stat_hujan == 0 && $kec_angin <= 8) {
+            if ($jam_sekarang > $T_jam_buka && $jam_sekarang < $T_jam) {
+              $this->m_statusjendela->bukaJendelaAll();
+            }
+          }
+        } else {
           $this->m_statusjendela->tutupJendelaAll();
         }
       }
     } else { // auto mati
-      //tidak ngapa ngapain bro
+      //tidak ngapa ngapain
     }
 
     $status_jendela_final = $this->m_statusjendela->ambilJendela()->result();
