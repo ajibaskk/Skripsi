@@ -16,6 +16,8 @@
     }
   </style>
   <title><?php echo SITE_NAME . ": " . $title ?></title>
+  <!-- add icon link -->
+  <link rel="icon" href="https://www.pngkit.com/png/full/990-9900857_window-frame-png-transparent-background-glass-windows-png.png" type="image/x-icon">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />

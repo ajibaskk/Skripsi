@@ -53,10 +53,10 @@ class Mikrokontroler extends CI_Controller {
           if ($stat_hujan == 0 && $kec_angin <= 8) {
             if ($jam_sekarang > $T_jam_buka && $jam_sekarang < $T_jam) {
               $this->m_statusjendela->bukaJendelaAll();
-            } else if ($jam_sekarang > $T_jam && $jam_sekarang < $T_jam_buka) {
+            } else {
               $this->m_statusjendela->tutupJendelaAll();
             }
-          } else if ($stat_hujan == 1 || $kec_angin >= 8) {
+          } else {
             $this->m_statusjendela->tutupJendelaAll();
           }
         } else {
@@ -68,13 +68,15 @@ class Mikrokontroler extends CI_Controller {
           $this->m_statusjendela->tutupJendelaAll();
         } else if ($stat_hujan == 0 && $kec_angin >= 8) { //moderate breeze
           $this->m_statusjendela->tutupJendelaAll();
-        } else if ($jam_sekarang > $T_jam && $jam_sekarang < $T_jam_buka) {
-          $this->m_statusjendela->tutupJendelaAll();
         } else if ($suhu >= $T_suhu || $kelembaban >= $T_kelembaban) {
           if ($stat_hujan == 0 && $kec_angin <= 8) {
             if ($jam_sekarang > $T_jam_buka && $jam_sekarang < $T_jam) {
               $this->m_statusjendela->bukaJendelaAll();
+            } else {
+              $this->m_statusjendela->tutupJendelaAll();
             }
+          } else {
+            $this->m_statusjendela->tutupJendelaAll();
           }
         } else {
           $this->m_statusjendela->tutupJendelaAll();
