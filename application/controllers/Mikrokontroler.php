@@ -93,4 +93,10 @@ class Mikrokontroler extends CI_Controller {
 
     echo json_encode($status_jendela_final);
   }
+
+  public function ambilDataTerakhir() {
+    $this->load->model('m_statusjendela');
+    $status_jendela_final = $this->m_statusjendela->ambilJendela()->result();
+    echo json_encode($status_jendela_final);
+  }
 }
