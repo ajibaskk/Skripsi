@@ -85,6 +85,21 @@ class Dashboard extends CI_Controller {
 		$this->load->model("m_statusjendela");
 		$id_jendela = $this->input->post('id_jendela');
 		$this->m_statusjendela->bukaJendela($id_jendela);
+
+		$this->load->model("m_datalog");
+		if (function_exists('date_default_timezone_set')) {
+			date_default_timezone_set('Asia/Jakarta');
+			$jam_sekarang = date("H:i:s");
+			$tanggal_sekarang = date("Y-m-d");
+		}
+		//if jendela(1) masukin log manual jendela 1 terbuka jendela 2 -
+		if ($id_jendela == 1) {
+			$this->m_datalog->tambahDataLogManualBukaJendela1($jam_sekarang, $tanggal_sekarang);
+		}
+		//if jendela(2) masukin log manual jendela 1 - jendela 2 terbuka
+		if ($id_jendela == 2) {
+			$this->m_datalog->tambahDataLogManualBukaJendela2($jam_sekarang, $tanggal_sekarang);
+		}
 		$data = "Terbuka";
 		echo json_encode($data);
 	}
@@ -93,6 +108,21 @@ class Dashboard extends CI_Controller {
 		$this->load->model("m_statusjendela");
 		$id_jendela = $this->input->post('id_jendela');
 		$this->m_statusjendela->tutupJendela($id_jendela);
+
+		$this->load->model("m_datalog");
+		if (function_exists('date_default_timezone_set')) {
+			date_default_timezone_set('Asia/Jakarta');
+			$jam_sekarang = date("H:i:s");
+			$tanggal_sekarang = date("Y-m-d");
+		}
+		//if jendela(1) masukin log manual jendela 1 tertutup jendela 2 -
+		if ($id_jendela == 1) {
+			$this->m_datalog->tambahDataLogManualTutupJendela1($jam_sekarang, $tanggal_sekarang);
+		}
+		//if jendela(2) masukin log manual jendela 1 - jendela 2 tertutup
+		if ($id_jendela == 2) {
+			$this->m_datalog->tambahDataLogManualTutupJendela2($jam_sekarang, $tanggal_sekarang);
+		}
 		$data = "Tertutup";
 		echo json_encode($data);
 	}

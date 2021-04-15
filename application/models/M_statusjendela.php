@@ -13,6 +13,10 @@ class M_statusjendela extends CI_Model {
     return $this->db->query("SELECT status FROM status_jendela ORDER BY id");
   }
 
+  function ambilJendelaKedua() {
+    return $this->db->query("SELECT * FROM status_jendela WHERE id = 2");
+  }
+
   function bukaJendela($id) {
     $this->db->query("UPDATE status_jendela SET status = 1 WHERE id = $id");
   }

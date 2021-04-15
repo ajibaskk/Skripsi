@@ -111,10 +111,10 @@
 
 								<th>Waktu</th>
 								<th>Tanggal</th>
-								<th>Kecepatan Angin</th>
-								<th>Status Hujan</th>
-								<th>Suhu Kamar</th>
-								<th>Kelembaban Kamar</th>
+								<th>Kecepatan Angin (m/s)</th>
+								<th>Status Hujan (units untuk 10 bits)</th>
+								<th>Suhu Kamar (*C)</th>
+								<th>Kelembaban Kamar (%)</th>
 							</thead>
 							<tbody id="datasensor">
 								<tr>
@@ -142,8 +142,25 @@
 	var kecepatanangin = document.getElementById('kecepatanangin');
 	var statushujan = document.getElementById('statushujan');
 	var suhukelembaban = document.getElementById('suhukelembaban');
+
+	var T_hujan;
+
+
 	$(document).ready(function() {
 		setInterval(function() {
+			$.ajax({
+				url: "<?php echo base_url(); ?>InputSensor/ambil_hujan",
+				dataType: 'json',
+				success: function(data) {
+					if (data != false) {
+						$.each(data, function(key, val) {
+							T_hujan = val.hujan;
+						});
+
+					}
+				}
+			});
+
 			$.ajax({
 				url: "<?php echo base_url(); ?>Dashboard/ambilDataSensor",
 				dataType: 'json',
@@ -151,15 +168,17 @@
 
 					if (data != false) {
 						$.each(data, function(key, val) {
-							if (val.statushujan == 0) {
+							if (parseInt(val.statushujan) > parseInt(T_hujan)) {
 								var status_hujan = "Tidak Hujan";
-							} else if (val.statushujan == 1) {
+							} else if (parseInt(val.statushujan) <= parseInt(T_hujan)) {
 								var status_hujan = "Hujan";
 							}
-							kecepatanangin.innerHTML = val.kecepatanangin;
+							kecepatanangin.innerHTML = val.kecepatanangin + " m/s";
 							statushujan.innerHTML = status_hujan;
-							suhukelembaban.innerHTML = val.suhu + " & " + val.kelembaban;
-
+							suhukelembaban.innerHTML = val.suhu + "*C " + " & " + val.kelembaban + "%";
+							console.log(val.statushujan);
+							console.log(T_hujan);
+							console.log(status_hujan);
 						});
 					} else {
 						kecepatanangin.innerHTML = "Data Tidak Ditemukan";
@@ -235,17 +254,17 @@
 						datasensor.innerHTML = "";
 						$.each(data, function(key, val) {
 
-							if (val.statushujan == 0) {
-								var status_hujan = "Tidak Hujan";
-							} else if (val.statushujan == 1) {
-								var status_hujan = "Hujan";
-							}
-
+							// if (val.statushujan == 0) {
+							// 	var status_hujan = "Tidak Hujan";
+							// } else if (val.statushujan == 1) {
+							// 	var status_hujan = "Hujan";
+							// }
+							var tanggal = moment(val.tanggal).format('DD-MM-YYYY');
 
 							datasensor.innerHTML += "<tr><td>" + val.waktu +
-								"</td><td>" + val.tanggal +
+								"</td><td>" + tanggal +
 								"</td><td>" + val.kecepatanangin +
-								"</td><td>" + status_hujan +
+								"</td><td>" + val.statushujan +
 								"</td><td>" + val.suhu +
 								"</td><td>" + val.kelembaban +
 								"</td></tr>"

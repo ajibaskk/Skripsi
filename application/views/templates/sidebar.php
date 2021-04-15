@@ -33,6 +33,13 @@
               <p>Input Sensor</p>
             </a>
           </li>
+          <!-- Data Log -->
+          <li class="nav-item <?php if (isset($datalog)) echo 'active'; ?>">
+            <a class="nav-link" href="<?= base_url('datalog'); ?>">
+              <i class="material-icons">analytics</i>
+              <p>Data Log</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

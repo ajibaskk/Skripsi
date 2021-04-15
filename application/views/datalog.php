@@ -28,12 +28,12 @@
 
         <div class="card">
           <div class="card-header card-header-primary mb-3">
-            <h4 class="card-title ">Database Sensor</h4>
-            <p class="card-category">Data terkait bacaan sensor yang disimpan secara lengkap</p>
+            <h4 class="card-title ">Data Log Kejadian Perubahan Posisi Jendela</h4>
+            <p class="card-category">Data log ini menunjukkan perubahan-perubahan posisi jendela saat operasi otomatis yang terpengaruh oleh sensor ataupun manual berdasarkan masukan pengguna</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table id="DataSensor" class="table table-hover display nowrap">
+              <table id="DataLog" class="table table-hover display nowrap">
                 <thead class=" text-primary">
                   <th>
                     No
@@ -45,16 +45,46 @@
                     Tanggal
                   </th>
                   <th>
+                    Jenis Operasi
+                  </th>
+                  <th>
+                    Posisi Jendela 1
+                  </th>
+                  <th>
+                    Posisi Jendela 2
+                  </th>
+                  <th>
+                    Sensor Berpengaruh
+                  </th>
+                  <th>
                     Kecepatan Angin (m/s)
+                  </th>
+                  <th>
+                    Treshold Kecepatan Angin (m/s)
                   </th>
                   <th>
                     Status Hujan (units untuk 10 bits)
                   </th>
                   <th>
+                    Treshold Status Hujan (units untuk 10 bits)
+                  </th>
+                  <th>
                     Suhu Kamar (*C)
                   </th>
                   <th>
+                    Treshold Suhu Kamar (*C)
+                  </th>
+                  <th>
                     Kelembaban Kamar (%)
+                  </th>
+                  <th>
+                    Treshold Kelembaban Kamar (%)
+                  </th>
+                  <th>
+                    Treshold Jam Buka
+                  </th>
+                  <th>
+                    Treshold Jam Tutup
                   </th>
                 </thead>
               </table>
@@ -79,7 +109,7 @@
 
   function fetch_data(start_date, end_date) {
     $.ajax({
-      url: "<?php echo base_url(); ?>DataSensor/filter_tanggal",
+      url: "<?php echo base_url(); ?>DataLog/filter_tanggal",
       type: "POST",
       data: {
         start_date: start_date,
@@ -91,7 +121,7 @@
         console.log(data);
         // Datatables
         var i = "1";
-        var table = $('#DataSensor').DataTable({
+        var table = $('#DataLog').DataTable({
           "lengthChange": true,
           "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -116,9 +146,39 @@
               }
             },
             {
+              "data": "status_operasi",
+              "render": function(data, type, row, meta) {
+                return `${row.status_operasi}`;
+              }
+            },
+            {
+              "data": "posisi_jendela1",
+              "render": function(data, type, row, meta) {
+                return `${row.posisi_jendela1}`;
+              }
+            },
+            {
+              "data": "posisi_jendela2",
+              "render": function(data, type, row, meta) {
+                return `${row.posisi_jendela2}`;
+              }
+            },
+            {
+              "data": "sensor",
+              "render": function(data, type, row, meta) {
+                return `${row.sensor}`;
+              }
+            },
+            {
               "data": "kecepatanangin",
               "render": function(data, type, row, meta) {
                 return `${row.kecepatanangin}`;
+              }
+            },
+            {
+              "data": "t_kecepatanangin",
+              "render": function(data, type, row, meta) {
+                return `${row.t_kecepatanangin}`;
               }
             },
             {
@@ -128,15 +188,45 @@
               }
             },
             {
+              "data": "t_statushujan",
+              "render": function(data, type, row, meta) {
+                return `${row.t_statushujan}`;
+              }
+            },
+            {
               "data": "suhu",
               "render": function(data, type, row, meta) {
                 return `${row.suhu}`;
               }
             },
             {
+              "data": "t_suhu",
+              "render": function(data, type, row, meta) {
+                return `${row.t_suhu}`;
+              }
+            },
+            {
               "data": "kelembaban",
               "render": function(data, type, row, meta) {
                 return `${row.kelembaban}`;
+              }
+            },
+            {
+              "data": "t_kelembaban",
+              "render": function(data, type, row, meta) {
+                return `${row.t_kelembaban}`;
+              }
+            },
+            {
+              "data": "t_jambuka",
+              "render": function(data, type, row, meta) {
+                return `${row.t_jambuka}`;
+              }
+            },
+            {
+              "data": "t_jamtutup",
+              "render": function(data, type, row, meta) {
+                return `${row.t_jamtutup}`;
               }
             }
           ]
@@ -153,7 +243,7 @@
     var end_date = $('#end_date').val();
 
     if (start_date != '' && end_date != '') {
-      $('#DataSensor').DataTable().destroy();
+      $('#DataLog').DataTable().destroy();
       fetch_data(start_date, end_date);
     } else {
       alert('Isi Kedua Tanggal!');
