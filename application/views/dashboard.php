@@ -204,7 +204,7 @@
 						}
 
 					} else { // Manual
-						posisijendela.innerHTML = "Operasi Manual";
+						posisijendela.innerHTML = "Remote";
 					}
 				}
 			});
@@ -283,7 +283,7 @@
 						document.getElementById("card_header_1").classList.remove('card-header-info');
 						document.getElementById("card_header_1").classList.add('card-header-success');
 					} else {
-						status_operasi_header.innerHTML = "Operasi Manual";
+						status_operasi_header.innerHTML = "Remote";
 						card_body_1.style.display = "block";
 						document.getElementById("card_header_1").classList.remove('card-header-success');
 						document.getElementById("card_header_1").classList.add('card-header-info');

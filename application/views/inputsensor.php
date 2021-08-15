@@ -46,7 +46,7 @@
         <div class="card card-stats">
           <div class="card-header card-header-danger card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">gesture</i>
+              <i class="material-icons">wb_cloudy</i>
             </div>
             <p class="card-category">Batas Status Hujan</p>
             <p class="card-category">Dalam Satuan Units dalam 10 bits (1-1024)</p>

@@ -15,16 +15,16 @@ class M_datalog extends CI_Model {
 
   //data log untuk manual
   public function tambahDataLogManualBukaJendela1($jam_sekarang, $tanggal_sekarang) {
-    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela1, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Manual', 'Terbuka', 'Pengguna')");
+    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela1, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Remote', 'Terbuka', 'Pengguna')");
   }
   public function tambahDataLogManualBukaJendela2($jam_sekarang, $tanggal_sekarang) {
-    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela2, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Manual', 'Terbuka', 'Pengguna')");
+    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela2, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Remote', 'Terbuka', 'Pengguna')");
   }
   public function tambahDataLogManualTutupJendela1($jam_sekarang, $tanggal_sekarang) {
-    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela1, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Manual', 'Tertutup', 'Pengguna')");
+    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela1, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Remote', 'Tertutup', 'Pengguna')");
   }
   public function tambahDataLogManualTutupJendela2($jam_sekarang, $tanggal_sekarang) {
-    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela2, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Manual', 'Tertutup', 'Pengguna')");
+    $this->db->query("INSERT INTO data_log (waktu, tanggal, status_operasi, posisi_jendela2, sensor) VALUES ('$jam_sekarang', '$tanggal_sekarang', 'Remote', 'Tertutup', 'Pengguna')");
   }
 
   //data log untuk otomatis
