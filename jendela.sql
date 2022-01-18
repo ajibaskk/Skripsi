@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2021 at 08:23 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Waktu pembuatan: 18 Jan 2022 pada 06.35
+-- Versi server: 10.4.10-MariaDB
+-- Versi PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batas_hujan`
+-- Struktur dari tabel `batas_hujan`
 --
 
 CREATE TABLE `batas_hujan` (
@@ -34,7 +34,7 @@ CREATE TABLE `batas_hujan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `batas_hujan`
+-- Dumping data untuk tabel `batas_hujan`
 --
 
 INSERT INTO `batas_hujan` (`id_hujan`, `hujan`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `batas_hujan` (`id_hujan`, `hujan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batas_jam`
+-- Struktur dari tabel `batas_jam`
 --
 
 CREATE TABLE `batas_jam` (
@@ -53,7 +53,7 @@ CREATE TABLE `batas_jam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `batas_jam`
+-- Dumping data untuk tabel `batas_jam`
 --
 
 INSERT INTO `batas_jam` (`id`, `jam_buka`, `jam_tutup`) VALUES
@@ -62,7 +62,7 @@ INSERT INTO `batas_jam` (`id`, `jam_buka`, `jam_tutup`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batas_kelembaban`
+-- Struktur dari tabel `batas_kelembaban`
 --
 
 CREATE TABLE `batas_kelembaban` (
@@ -71,7 +71,7 @@ CREATE TABLE `batas_kelembaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `batas_kelembaban`
+-- Dumping data untuk tabel `batas_kelembaban`
 --
 
 INSERT INTO `batas_kelembaban` (`id_kelembaban`, `kelembaban`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `batas_kelembaban` (`id_kelembaban`, `kelembaban`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batas_suhu`
+-- Struktur dari tabel `batas_suhu`
 --
 
 CREATE TABLE `batas_suhu` (
@@ -89,7 +89,7 @@ CREATE TABLE `batas_suhu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `batas_suhu`
+-- Dumping data untuk tabel `batas_suhu`
 --
 
 INSERT INTO `batas_suhu` (`id_suhu`, `suhu`) VALUES
@@ -98,7 +98,7 @@ INSERT INTO `batas_suhu` (`id_suhu`, `suhu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_log`
+-- Struktur dari tabel `data_log`
 --
 
 CREATE TABLE `data_log` (
@@ -122,7 +122,7 @@ CREATE TABLE `data_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_log`
+-- Dumping data untuk tabel `data_log`
 --
 
 INSERT INTO `data_log` (`id`, `waktu`, `tanggal`, `kecepatanangin`, `t_kecepatanangin`, `statushujan`, `t_statushujan`, `suhu`, `t_suhu`, `kelembaban`, `t_kelembaban`, `status_operasi`, `posisi_jendela1`, `posisi_jendela2`, `sensor`, `t_jambuka`, `t_jamtutup`) VALUES
@@ -226,7 +226,7 @@ INSERT INTO `data_log` (`id`, `waktu`, `tanggal`, `kecepatanangin`, `t_kecepatan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_sensor`
+-- Struktur dari tabel `data_sensor`
 --
 
 CREATE TABLE `data_sensor` (
@@ -240,7 +240,7 @@ CREATE TABLE `data_sensor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_sensor`
+-- Dumping data untuk tabel `data_sensor`
 --
 
 INSERT INTO `data_sensor` (`id`, `waktu`, `tanggal`, `kecepatanangin`, `statushujan`, `suhu`, `kelembaban`) VALUES
@@ -3916,7 +3916,7 @@ INSERT INTO `data_sensor` (`id`, `waktu`, `tanggal`, `kecepatanangin`, `statushu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_operasi`
+-- Struktur dari tabel `jenis_operasi`
 --
 
 CREATE TABLE `jenis_operasi` (
@@ -3925,7 +3925,7 @@ CREATE TABLE `jenis_operasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jenis_operasi`
+-- Dumping data untuk tabel `jenis_operasi`
 --
 
 INSERT INTO `jenis_operasi` (`id`, `status`) VALUES
@@ -3934,7 +3934,7 @@ INSERT INTO `jenis_operasi` (`id`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_jendela`
+-- Struktur dari tabel `status_jendela`
 --
 
 CREATE TABLE `status_jendela` (
@@ -3943,7 +3943,7 @@ CREATE TABLE `status_jendela` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `status_jendela`
+-- Dumping data untuk tabel `status_jendela`
 --
 
 INSERT INTO `status_jendela` (`id`, `status`) VALUES
@@ -3955,95 +3955,95 @@ INSERT INTO `status_jendela` (`id`, `status`) VALUES
 --
 
 --
--- Indexes for table `batas_hujan`
+-- Indeks untuk tabel `batas_hujan`
 --
 ALTER TABLE `batas_hujan`
   ADD PRIMARY KEY (`id_hujan`);
 
 --
--- Indexes for table `batas_jam`
+-- Indeks untuk tabel `batas_jam`
 --
 ALTER TABLE `batas_jam`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `batas_kelembaban`
+-- Indeks untuk tabel `batas_kelembaban`
 --
 ALTER TABLE `batas_kelembaban`
   ADD PRIMARY KEY (`id_kelembaban`);
 
 --
--- Indexes for table `batas_suhu`
+-- Indeks untuk tabel `batas_suhu`
 --
 ALTER TABLE `batas_suhu`
   ADD PRIMARY KEY (`id_suhu`);
 
 --
--- Indexes for table `data_log`
+-- Indeks untuk tabel `data_log`
 --
 ALTER TABLE `data_log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `data_sensor`
+-- Indeks untuk tabel `data_sensor`
 --
 ALTER TABLE `data_sensor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jenis_operasi`
+-- Indeks untuk tabel `jenis_operasi`
 --
 ALTER TABLE `jenis_operasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `status_jendela`
+-- Indeks untuk tabel `status_jendela`
 --
 ALTER TABLE `status_jendela`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `batas_hujan`
+-- AUTO_INCREMENT untuk tabel `batas_hujan`
 --
 ALTER TABLE `batas_hujan`
   MODIFY `id_hujan` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `batas_jam`
+-- AUTO_INCREMENT untuk tabel `batas_jam`
 --
 ALTER TABLE `batas_jam`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `batas_kelembaban`
+-- AUTO_INCREMENT untuk tabel `batas_kelembaban`
 --
 ALTER TABLE `batas_kelembaban`
   MODIFY `id_kelembaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `batas_suhu`
+-- AUTO_INCREMENT untuk tabel `batas_suhu`
 --
 ALTER TABLE `batas_suhu`
   MODIFY `id_suhu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `data_log`
+-- AUTO_INCREMENT untuk tabel `data_log`
 --
 ALTER TABLE `data_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT for table `data_sensor`
+-- AUTO_INCREMENT untuk tabel `data_sensor`
 --
 ALTER TABLE `data_sensor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3671;
 
 --
--- AUTO_INCREMENT for table `status_jendela`
+-- AUTO_INCREMENT untuk tabel `status_jendela`
 --
 ALTER TABLE `status_jendela`
   MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
